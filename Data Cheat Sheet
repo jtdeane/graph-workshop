@@ -1,0 +1,81 @@
+ORGANIZATIONS
+
+Watergate Corporation
+-- Maintains Watergate Hospital
+-- Maintains Watergate Physicians
+
+Freshpond LLC
+-- Maintains Freshpond IPA West
+-- Maintains Freshpond IPA East
+
+ThneedHealth LLC
+-- Maintains ThneedHealth
+
+PRACTITIONERS
+
+Zachary Smith - General Medicine
+-- Works for Watergate Corporation
+-- Works at Watergate Physicians
+
+Yuri Zhivago - Immunology
+-- Works for Watergate Corporation
+-- Works at Watergate Hospital
+-- Works at Watergate Physicians
+
+James Moriarty - Neurology
+-- Works for Freshpond LLC
+-- Works at Freshpond IPA West
+
+Leonard McCoy - General Medicine
+-- Works for Freshpond LLC
+-- Works at Freshpond IPA West
+-- Works at Freshpond IPA East
+
+Theodor Geisel - General Medicine
+-- Works for ThneedHealth LLC
+-- Works at Thneed Health Center
+
+PATIENTS
+
+Tim Smith 1965-06-27
+-- Treated by Zachary Smith PCP
+-- Treated by Yuri Zhivago
+
+Jackie Bonk 1978-12-15
+-- Treated by Leonard McCoy PCP  
+
+Lovee Johnson 1982-01-18
+-- Treated by Theodor Geisel PCP
+-- Treated by James Moriarty
+
+Yuri Zhivago 1959-02-05
+-- Treated by Leonard McCoy PCP
+
+Holly Goodwin 1991-11-17
+-- Treated by Theodor Geisel
+
+Michael Moore 1963-04-21
+-- Treated by Zachary Smith PCP
+
+Inga Yurel 1952-05-30
+-- Treated by James Moriarty PCP
+
+Max Cleveland 1967-08-19
+-- Treated by Theodor Geisel PCP
+-- Treated by James Moriarty
+
+CARE GIVERS
+
+Judith Johnson
+-- Cares for Lovee Johnson
+
+Boris Yurel
+-- Cares for Inga Yurel
+
+Nurse Ratched 
+-- Works for Watergate Corporation
+-- Cares for Tim Smith
+
+Florence Nightingale
+-- Works for Freshpond LLC
+-- Cares for Max Cleveland
