@@ -1,10 +1,7 @@
-//HELLO WORLD - Introduction
-
-
 //Create Node
 CREATE (:Practitioner {name:"Zachary Smith", specialty:"General Medicine"})
 
-//Retrieve Node
+//	 Node
 MATCH (p:Practitioner) RETURN p
 
 //Update Node

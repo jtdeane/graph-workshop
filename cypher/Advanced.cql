@@ -12,8 +12,14 @@ LOAD CSV WITH HEADERS FROM "file:///Users/jeremydeane/OrganizationRelationships.
 MATCH (giver:Caregiver { name:(csvLine.giver)}), (org:Organization { name:(csvLine.organization)}) 
 CREATE (giver)-[:WORKS_FOR { type:(csvLine.status) }]->(org) RETURN *
 
+//Return the patients with a family cargiver and their practitioners
+MATCH (g:Caregiver)-[CARES_FOR {type:"Family"}]->(m:Patient)-[TREATED_BY]->(p:Practitioner) RETURN m, p, g
+
 //Find patients who are also a practitioners
 MATCH (m:Patient), (p:Practitioner) WHERE m.name=p.name RETURN p
+
+//All patients with a PCP having a name ending in y (REGEX)
+MATCH (m:Patient)-[TREATED_BY {pcp:true}]->(p:Practitioner) WHERE p.name=~ ".*y" RETURN m,p
 
 //All paths to Lovee Johnson
 MATCH paths = (m:Patient)-[*]-(node) WHERE m.name="Lovee Johnson" RETURN paths
@@ -29,14 +35,10 @@ WITH patient, count (practitioner) AS practitioners
 WHERE practitioners > 1
 RETURN patient
 
-//All patients with a PCP having a name ending in y (REGEX)
-MATCH (m:Patient)-[TREATED_BY {pcp:true}]->(p:Practitioner) WHERE p.name=~ ".*y" RETURN m,p
-
-//Return the patients with a family cargiver and thier practitioners
-MATCH (g:Caregiver)-[CARES_FOR {type:"Family"}]->(m:Patient)-[TREATED_BY]->(p:Practitioner) RETURN m, p, g
-
 //create index on Patient Label
 CREATE INDEX ON :Patient(name)
+
+//GET http://localhost:7474/db/data/schema/index/Patient
 
 //drop index on Patient Label
 DROP INDEX ON :Patient(name)
@@ -46,6 +48,8 @@ DROP INDEX ON :Practitioner(name)
 
 //create Unique Practitioner constraint
 CREATE CONSTRAINT ON (practitioner:Practitioner) ASSERT practitioner.name IS UNIQUE
+
+//GET http://localhost:7474/db/data/schema/constraint/Practitioner
 
 //attempt to create duplicate Practitioner - should fail
 CREATE (McCoy:Practitioner {name:"Leonard McCoy", specialty:"General Medicine"})
