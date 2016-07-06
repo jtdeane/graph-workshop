@@ -18,8 +18,8 @@ MATCH (p) WHERE ID(p)=0 DELETE p
 
 //Merge Node
 MERGE (p:Practitioner {name:"Zachary Smith"})
-ON CREATE SET n.created=timestamp()
-ON MATCH SET n.updated=timestamp()
+ON CREATE SET p.created=timestamp()
+ON MATCH SET p.updated=timestamp()
 
 //Create Node
 CREATE (:Patient {name:"Tim Smith", birth_date:"1965-06-27", conditions:["Diabetes", "Epilepsy"]})
