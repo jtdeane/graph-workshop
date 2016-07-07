@@ -1,14 +1,14 @@
 //load caregiver nodes
-LOAD CSV WITH HEADERS FROM "file:///Users/jeremydeane/CaregiverNodes.csv" AS csvLine
+LOAD CSV WITH HEADERS FROM "file:///CaregiverNodes.csv" AS csvLine
 CREATE (g:Caregiver {name: csvLine.name, guardian: csvLine.guardian}) RETURN *
 
 //load caregiver patient relationships
-LOAD CSV WITH HEADERS FROM "file:///Users/jeremydeane/PatientRelationships.csv" AS csvLine
+LOAD CSV WITH HEADERS FROM "file:///PatientRelationships.csv" AS csvLine
 MATCH (giver:Caregiver { name:(csvLine.giver)}), (patient:Patient { name:(csvLine.patient)}) 
 CREATE (giver)-[:CARES_FOR { type:(csvLine.type) }]->(patient) RETURN *
 
 //load caregiver organization relationships
-LOAD CSV WITH HEADERS FROM "file:///Users/jeremydeane/OrganizationRelationships.csv" AS csvLine
+LOAD CSV WITH HEADERS FROM "file:///OrganizationRelationships.csv" AS csvLine
 MATCH (giver:Caregiver { name:(csvLine.giver)}), (org:Organization { name:(csvLine.organization)}) 
 CREATE (giver)-[:WORKS_FOR { type:(csvLine.status) }]->(org) RETURN *
 
