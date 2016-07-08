@@ -19,6 +19,8 @@ PROFILE MATCH (p:Practitioner) WHERE p.name="Zachary Smith" RETURN p
 //Profile complex query
 PROFILE MATCH (m:Patient), (p:Practitioner) WHERE m.name=p.name RETURN p
 
+//Try using Indexes to improve performance
+
 //List available Procedures
 CALL dbms.procedures()
 
