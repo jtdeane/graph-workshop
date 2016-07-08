@@ -24,9 +24,9 @@ MATCH (m:Patient)-[TREATED_BY {pcp:true}]->(p:Practitioner) WHERE p.name=~ ".*y"
 //All paths to Lovee Johnson
 MATCH paths = (m:Patient)-[*]-(node) WHERE m.name="Lovee Johnson" RETURN paths
 
-//Shortest path from Lovee Jonhnson to Florence Nightingale 
+//Shortest path from Lovee Jonhnson to IPA East 
 MATCH (m:Patient {name:"Lovee Johnson"}), 
-(g:Caregiver {name:"Florence Nightingale"}), 
+(g:Location {name:"IPA East"}), 
 path = shortestPath((m)-[*..10]-(g)) RETURN path
 
 //Patients with more than one practitioner
@@ -40,6 +40,9 @@ CREATE INDEX ON :Patient(name)
 
 //GET http://localhost:7474/db/data/schema/index/Patient
 
+//retrieve list of indexes
+CALL db.indexes()
+
 //drop index on Patient Label
 DROP INDEX ON :Patient(name)
 
@@ -50,6 +53,9 @@ DROP INDEX ON :Practitioner(name)
 CREATE CONSTRAINT ON (practitioner:Practitioner) ASSERT practitioner.name IS UNIQUE
 
 //GET http://localhost:7474/db/data/schema/constraint/Practitioner
+
+//retrieve list of constraints
+CALL db.constraints()
 
 //attempt to create duplicate Practitioner - should fail
 CREATE (McCoy:Practitioner {name:"Leonard McCoy", specialty:"General Medicine"})

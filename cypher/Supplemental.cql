@@ -19,12 +19,11 @@ PROFILE MATCH (p:Practitioner) WHERE p.name="Zachary Smith" RETURN p
 //Profile complex query
 PROFILE MATCH (m:Patient), (p:Practitioner) WHERE m.name=p.name RETURN p
 
-//Call a Procedure
-CALL db.labels()
-
 //List available Procedures
 CALL dbms.procedures()
 
-//Delete a node and any relationships to and from it
-MATCH (n { name:'Florence Nightingale' }) DETACH
-DELETE n
+//attempt to delete node with existing relationships - fails
+MATCH (n:Organization {name:"Watergate Corporation"}) DELETE n
+
+//remove Node and all relationships to and from it - success
+MATCH (n:Organization {name:"Watergate Corporation"}) DETACH DELETE n
